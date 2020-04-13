@@ -32,7 +32,7 @@ function saveSession(lastDate) {
 }
 
 function loadLastSession(data) {
-  if (window.localStorage) {
+  if (window.localStorage && window.localStorage.getItem('lastTime') !== null) {
     dateKey = window.localStorage.getItem('dateKey')
     currentDate = Object.keys(data.cases)[Object.keys(data.cases).length - 1]
     oldTime = parseInt(window.localStorage.getItem('lastTime'))
