@@ -1,5 +1,9 @@
 var urlParams = new URLSearchParams(location.search);
 
+if (urlParams.has('countries')) {
+
+}
+
 if (urlParams.has('country')) {
   fetch(["https://corona.lmao.ninja/v2/historical/", urlParams.get('country')].join('')).then((response) => {
     return response.json()
@@ -43,9 +47,9 @@ function saveSession(lastDate) {
 }
 
 function loadLastSession(data) {
+  currentDate = Object.keys(data.cases)[Object.keys(data.cases).length - 1]
   if (window.localStorage.getItem('lastTime') !== null) {
     dateKey = window.localStorage.getItem('dateKey')
-    currentDate = Object.keys(data.cases)[Object.keys(data.cases).length - 1]
     oldTime = parseInt(window.localStorage.getItem('lastTime'))
 
     timeDiff = (Date.now() - oldTime) % 86400000

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Corona case viz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=fallback" rel="stylesheet">
+
+</head>
+
+<body>
+  <style media="screen">
+    body {
+      background-color: #228DFF;
+      text-align: center;
+      font-family: 'Roboto Slab', serif;
+    }
+
+    p,
+    a {
+      font-family: 'Inconsolata', monospace;
+      font-size: 3.2rem;
+      display: inline-block;
+    }
+
+
+    h1 {
+      font-size: 10rem;
+      color: #FF0092;
+    }
+
+    li{
+    line-height: 4rem;
+    }
+
+    li::before {
+      content: "";
+      background-color: #B6FF00;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      line-height: 1rem;
+      text-align: center;
+      margin-right: 0.5rem;
+    }
+
+    a {
+      background-size: 200% 100%;
+      background-image: linear-gradient(to left, #B6FF00 50%, transparent 50%);
+      background-position: 0 0;
+      transition: background-position 0.5s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    a:hover {
+      background-position: -100% 0;
+    }
+
+    h2 {
+      font-size: 4rem;
+      color: #FFCA1B;
+    }
+  </style>
+  <h1>All countries</h1>
+  <ul id="countryList" style="list-style:none;">
+
+  </ul>
+  <script type="text/javascript">
+    fetch("https://corona.lmao.ninja/v2/countries").then((response) => {
+      return response.json()
+    }).then(onLoaded);
+
+    function onLoaded(data) {
+      console.log(data);
+      var c = document.createDocumentFragment();
+
+      data.forEach(function(item, index) {
+        var e = document.createElement("li");
+        var a = document.createElement("a");
+        a.textContent = item.country
+        a.href = ["./?country=", item.country].join("")
+        e.appendChild(a);
+        c.appendChild(e);
+      })
+      document.getElementById("countryList").appendChild(c);
+
+    }
+  </script>
+</body>
+
+</html>

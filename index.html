@@ -40,7 +40,8 @@
     }
 
     span {
-      color: transparent; /*should work just as well???*/
+      color: transparent;
+      /*should work just as well???*/
       color: #BA01FF;
       background-size: 200% 100%;
       background-image: linear-gradient(to right, #B6FF00 50%, #BA01FF 50%),
@@ -79,6 +80,15 @@
         background-position: -100% 0;
       }
     }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 2rem;
+      margin: 0.5rem auto;
+    }
   </style>
 
   <h1 id="pagetitle">COVID-19</h1>
@@ -114,8 +124,9 @@
       <p>people died</p><br>
     </span>
   </div>
-
-
+  <footer>
+    <a href="countries.html" style="">view by countries</a>
+  </footer>
   <script type="text/javascript" src="script.js"></script>
 </body>
 
