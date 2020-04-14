@@ -43,7 +43,7 @@ function saveSession(lastDate) {
 }
 
 function loadLastSession(data) {
-  if (window.localStorage && window.localStorage.getItem('lastTime') !== null) {
+  if (window.localStorage.getItem('lastTime') !== null) {
     dateKey = window.localStorage.getItem('dateKey')
     currentDate = Object.keys(data.cases)[Object.keys(data.cases).length - 1]
     oldTime = parseInt(window.localStorage.getItem('lastTime'))
@@ -67,9 +67,9 @@ function loadLastSession(data) {
     document.getElementById('linf').textContent = c + " "
     document.getElementById('ldead').textContent = d + " "
     document.getElementById('lreco').textContent = r + " "
-    //saves the last Date being used as a key in the JSON
-    saveSession(currentDate)
   }
+  //saves the last Date being used as a key in the JSON
+  saveSession(currentDate)
 }
 
 function onLoaded(data) {
@@ -85,6 +85,6 @@ function onLoaded(data) {
   }, calcInterval(perDay(data.cases)))
   setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
   setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
-
-  loadLastSession(data)
+  if (window.localStorage)
+    loadLastSession(data)
 }
