@@ -83,14 +83,17 @@ function onLoaded(data) {
     data = data.timeline
   }
   if (perDay(data.cases) > 0) {
-    setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
     window.document.title = 0
     setInterval(() => {
       window.document.title++
     }, calcInterval(perDay(data.cases)))
-    setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
-    setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
+    setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
   }
-  if (window.localStorage)
-    loadLastSession(data)
+  if (perDay(data.deaths) > 0)
+    setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
+  if (perDay(data.recovered) > 0)
+    setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
+}
+if (window.localStorage)
+  loadLastSession(data)
 }
