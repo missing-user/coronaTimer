@@ -8,10 +8,8 @@ if (urlParams.has('country')) {
   fetch(["https://corona.lmao.ninja/v2/historical/", urlParams.get('country')].join('')).then((response) => {
     return response.json()
   }).then(onLoaded);
-  var countryName = urlParams.get('country')
-  countryName = countryName.toLowerCase()
-  countryName = countryName.replace(/^\w/, c => c.toUpperCase())
-  document.getElementById("pagetitle").innerHTML += ["<br> in", countryName].join(" ")
+
+  document.getElementById("pagetitle").innerHTML += ["<br> in", urlParams.get('country')].join(" ")
 } else
   fetch("https://corona.lmao.ninja/v2/historical/all").then((response) => {
     return response.json()
@@ -33,8 +31,7 @@ function updateValue(elemId) {
   elem.textContent += " "
   elem.parentElement.classList.toggle("even");
 
-  elem = document.getElementById(['l', elemId].join(''))
-  elem.textContent++
+  elem = document.getElementById(['l', elemId].join('')) 
   elem.textContent += " "
   elem.parentElement.classList.toggle("even");
 }
@@ -91,7 +88,7 @@ function onLoaded(data) {
     }, calcInterval(perDay(data.cases)))
     setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
   }
-  
+
   if (perDay(data.deaths) > 0)
     setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
 
