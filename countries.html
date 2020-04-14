@@ -22,6 +22,10 @@
       font-family: 'Inconsolata', monospace;
       font-size: 3.2rem;
       display: inline-block;
+      background-size: 200% 100%;
+      background-image: linear-gradient(to left, #B6FF00 50%, transparent 50%);
+      background-position: 0 0;
+      transition: background-position 0.5s cubic-bezier(.77, 0, .18, 1);
     }
 
 
@@ -30,8 +34,8 @@
       color: #FF0092;
     }
 
-    li{
-    line-height: 4rem;
+    li {
+      line-height: 4rem;
     }
 
     li::before {
@@ -45,13 +49,6 @@
       margin-right: 0.5rem;
     }
 
-    a {
-      background-size: 200% 100%;
-      background-image: linear-gradient(to left, #B6FF00 50%, transparent 50%);
-      background-position: 0 0;
-      transition: background-position 0.5s cubic-bezier(.77, 0, .18, 1);
-    }
-
     a:hover {
       background-position: -100% 0;
     }
@@ -63,6 +60,7 @@
   </style>
   <h1>All countries</h1>
   <ul id="countryList" style="list-style:none;">
+    <li><a href="./">WORLD</a></li>
 
   </ul>
   <script type="text/javascript">
@@ -71,7 +69,7 @@
     }).then(onLoaded);
 
     function onLoaded(data) {
-      console.log(data);
+      console.log('all countries have been loaded, creating list')
       var c = document.createDocumentFragment();
 
       data.forEach(function(item, index) {
