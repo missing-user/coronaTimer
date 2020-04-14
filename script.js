@@ -82,13 +82,15 @@ function onLoaded(data) {
     //accomodate for different data structure in countries
     data = data.timeline
   }
-  setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
-  window.document.title = 0
-  setInterval(() => {
-    window.document.title++
-  }, calcInterval(perDay(data.cases)))
-  setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
-  setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
+  if (perDay(data.cases) > 0) {
+    setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
+    window.document.title = 0
+    setInterval(() => {
+      window.document.title++
+    }, calcInterval(perDay(data.cases)))
+    setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
+    setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
+  }
   if (window.localStorage)
     loadLastSession(data)
 }
