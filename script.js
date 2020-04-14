@@ -19,9 +19,13 @@ function calcInterval(daily) {
 function updateValue(elemId) {
   elem = document.getElementById(elemId)
   elem.textContent++
+  elem.textContent += " "
+  elem.classList.toggle("even");
 
   elem = document.getElementById(['l', elemId].join(''))
   elem.textContent++
+  elem.textContent += " "
+  elem.classList.toggle("even");
 }
 
 function saveSession(lastDate) {
@@ -53,9 +57,9 @@ function loadLastSession(data) {
 
     console.log('loaded last session data ', dateKey, oldTime);
 
-    document.getElementById('linf').textContent = c
-    document.getElementById('ldead').textContent = d
-    document.getElementById('lreco').textContent = r
+    document.getElementById('linf').textContent = c+" "
+    document.getElementById('ldead').textContent = d+" "
+    document.getElementById('lreco').textContent = r+" "
     //saves the last Date being used as a key in the JSON
     saveSession(currentDate)
   }
