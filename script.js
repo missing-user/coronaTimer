@@ -82,6 +82,8 @@ function onLoaded(data) {
     //accomodate for different data structure in countries
     data = data.timeline
   }
+
+  //set the intervals for the three different data types
   if (perDay(data.cases) > 0) {
     window.document.title = 0
     setInterval(() => {
@@ -89,11 +91,13 @@ function onLoaded(data) {
     }, calcInterval(perDay(data.cases)))
     setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
   }
+  
   if (perDay(data.deaths) > 0)
     setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
+
   if (perDay(data.recovered) > 0)
     setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
-}
+
 if (window.localStorage)
   loadLastSession(data)
 }
