@@ -26,8 +26,6 @@
       font-family: 'Inconsolata', monospace;
       font-size: 3.2rem;
       display: inline;
-      color: transparent;
-
     }
 
 
@@ -42,21 +40,24 @@
     }
 
     span {
+      color: transparent; /*should work just as well???*/
+      color: #BA01FF;
       background-size: 200% 100%;
       background-image: linear-gradient(to right, #B6FF00 50%, #BA01FF 50%),
-        linear-gradient(to right, #BA01FF 50%, #B6FF00 50%);
+        linear-gradient(to left, #B6FF00 50%, #BA01FF 50%);
       animation: a-ltr-after 1s cubic-bezier(.77, 0, .18, 1) forwards;
-      -webkit-background-clip: text, border-box;
       -webkit-background-clip: text, border-box;
       background-clip: text, border-box;
       font-size: 2.5rem;
       line-height: 4rem;
+      transition: color 0.5s cubic-bezier(.77, 0, .18, 1);
     }
 
     .even {
+      color: #B6FF00;
       animation: b-ltr-after 0.7s cubic-bezier(.77, 0, .18, 1) forwards;
       background-image: linear-gradient(to left, #B6FF00 50%, #BA01FF 50%),
-        linear-gradient(to left, #BA01FF 50%, #B6FF00 50%);
+        linear-gradient(to right, #B6FF00 50%, #BA01FF 50%);
     }
 
     @keyframes a-ltr-after {
