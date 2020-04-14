@@ -4,25 +4,13 @@
 <head>
   <meta charset="utf-8">
   <title>Corona case viz</title>
-  <script type="text/javascript" src="script.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=fallback" rel="stylesheet">
 
 </head>
 
 <body>
-
   <style media="screen">
-    p {
-      display: inline;
-      color: #B6FF00;
-    }
-
-    .even,
-    .even+p {
-      color: #BA01FF;
-    }
-
     body {
       background-color: #228DFF;
       text-align: center;
@@ -37,7 +25,11 @@
     p {
       font-family: 'Inconsolata', monospace;
       font-size: 3.2rem;
+      display: inline;
+      color: transparent;
+
     }
+
 
     h1 {
       font-size: 10rem;
@@ -48,32 +40,82 @@
       font-size: 4rem;
       color: #FFCA1B;
     }
+
+    span {
+      background-size: 200% 100%;
+      background-image: linear-gradient(to right, #B6FF00 50%, #BA01FF 50%),
+        linear-gradient(to right, #BA01FF 50%, #B6FF00 50%);
+      animation: a-ltr-after 1s cubic-bezier(.77, 0, .18, 1) forwards;
+      -webkit-background-clip: text, border-box;
+      -webkit-background-clip: text, border-box;
+      background-clip: text, border-box;
+      font-size: 2.5rem;
+      line-height: 4rem;
+    }
+
+    .even {
+      animation: b-ltr-after 0.7s cubic-bezier(.77, 0, .18, 1) forwards;
+      background-image: linear-gradient(to left, #B6FF00 50%, #BA01FF 50%),
+        linear-gradient(to left, #BA01FF 50%, #B6FF00 50%);
+    }
+
+    @keyframes a-ltr-after {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: -100% 0;
+      }
+    }
+
+    @keyframes b-ltr-after {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: -100% 0;
+      }
+    }
   </style>
-  <h1>COVID-19</h1>
+
+  <h1 id="pagetitle">COVID-19</h1>
 
   <h2>Since you opened this website...</h2>
   <div class="counterCont">
-    <p id="inf">0 </p>
-    <p>people got infected</p><br>
-    <p id="reco">0 </p>
-    <p>people recovered</p><br>
-    <p id="dead">0 </p>
-    <p>people died</p><br>
+    <span>
+      <p id="inf">0 </p>
+      <p>people got infected</p><br>
+    </span>
+    <span>
+      <p id="reco">0 </p>
+      <p>people recovered</p><br>
+    </span>
+    <span>
+      <p id="dead">0 </p>
+      <p>people died</p><br>
+    </span>
   </div>
 
   <h2>Since your first visit...</h2>
   <div class="counterCont">
-    <p id="linf">0 </p>
-    <p>people got infected</p><br>
-    <p id="lreco">0 </p>
-    <p>people recovered</p><br>
-    <p id="ldead">0 </p>
-    <p>people died</p><br>
+    <span>
+      <p id="linf">0 </p>
+      <p>people got infected</p><br>
+    </span>
+    <span>
+      <p id="lreco">0 </p>
+      <p>people recovered</p><br>
+    </span>
+    <span>
+      <p id="ldead">0 </p>
+      <p>people died</p><br>
+    </span>
   </div>
 
-  <script type="text/javascript">
-    // put all the code here at the end, cause this really doesn't need to be split up
-  </script>
+
+  <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>

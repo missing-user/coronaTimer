@@ -1,10 +1,17 @@
-fetch("https://corona.lmao.ninja/v2/historical/all").then((response) => {
-  return response.json()
-}).then(onLoaded);
+var urlParams = new URLSearchParams(location.search);
 
-fetch("https://corona.lmao.ninja/v2/historical/germany").then((response) => {
-  return response.json()
-}).then(onLoaded);
+if (urlParams.has('country')) {
+  fetch(["https://corona.lmao.ninja/v2/historical/", urlParams.get('country')].join('')).then((response) => {
+    return response.json()
+  }).then(onLoaded);
+  var countryName = urlParams.get('country')
+  countryName = countryName.toLowerCase()
+  countryName = countryName.replace(/^\w/, c => c.toUpperCase())
+  document.getElementById("pagetitle").innerHTML += ["<br> in", countryName].join(" ")
+} else
+  fetch("https://corona.lmao.ninja/v2/historical/all").then((response) => {
+    return response.json()
+  }).then(onLoaded);
 
 function perDay(inputArray) {
   k = Object.keys(inputArray)
@@ -20,12 +27,12 @@ function updateValue(elemId) {
   elem = document.getElementById(elemId)
   elem.textContent++
   elem.textContent += " "
-  elem.classList.toggle("even");
+  elem.parentElement.classList.toggle("even");
 
   elem = document.getElementById(['l', elemId].join(''))
   elem.textContent++
   elem.textContent += " "
-  elem.classList.toggle("even");
+  elem.parentElement.classList.toggle("even");
 }
 
 function saveSession(lastDate) {
@@ -57,9 +64,9 @@ function loadLastSession(data) {
 
     console.log('loaded last session data ', dateKey, oldTime);
 
-    document.getElementById('linf').textContent = c+" "
-    document.getElementById('ldead').textContent = d+" "
-    document.getElementById('lreco').textContent = r+" "
+    document.getElementById('linf').textContent = c + " "
+    document.getElementById('ldead').textContent = d + " "
+    document.getElementById('lreco').textContent = r + " "
     //saves the last Date being used as a key in the JSON
     saveSession(currentDate)
   }
@@ -68,19 +75,16 @@ function loadLastSession(data) {
 function onLoaded(data) {
   console.log(data)
   if ("country" in data) {
-    //console.log('Daily cases in', data.country, ': ', perDay(data.timeline.cases));
-    //console.log('Daily deaths in', data.country, ': ', perDay(data.timeline.deaths));
-    //console.log('Daily recoveries in', data.country, ': ', perDay(data.timeline.recovered));
-  } else {
-    //we're dealing with global stats
-    //console.log('Daily cases: ', perDay(data.cases));
-    //console.log('Daily deaths: ', perDay(data.deaths));
-    //console.log('Daily recoveries: ', perDay(data.recovered));
-
-    setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
-    setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
-    setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
-
-    loadLastSession(data)
+    //accomodate for different data structure in countries
+    data = data.timeline
   }
+  setInterval(updateValue, calcInterval(perDay(data.cases)), 'inf')
+  window.document.title = 0
+  setInterval(() => {
+    window.document.title++
+  }, calcInterval(perDay(data.cases)))
+  setInterval(updateValue, calcInterval(perDay(data.deaths)), 'dead')
+  setInterval(updateValue, calcInterval(perDay(data.recovered)), 'reco')
+
+  loadLastSession(data)
 }
