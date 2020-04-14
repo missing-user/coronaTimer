@@ -31,7 +31,8 @@ function updateValue(elemId) {
   elem.textContent += " "
   elem.parentElement.classList.toggle("even");
 
-  elem = document.getElementById(['l', elemId].join('')) 
+  elem = document.getElementById(['l', elemId].join(''))
+  elem.textContent++
   elem.textContent += " "
   elem.parentElement.classList.toggle("even");
 }
