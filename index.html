@@ -11,10 +11,13 @@
 
 <body>
   <style media="screen">
+  html{
+  height: 100%;}
     body {
       background-color: #228DFF;
       text-align: center;
       font-family: 'Roboto Slab', serif;
+      height: 100%;
     }
 
     .counterCont {
@@ -53,6 +56,13 @@
       transition: color 0.5s cubic-bezier(.77, 0, .18, 1);
     }
 
+/* i know that using ids is frowned uppon,
+but they're faster in performance and this class is never being reused*/
+    #allExceptTheFooter{
+      min-height: 100%;
+      margin-bottom: 0rem; /*height of footer*/
+    }
+
     .even {
       color: #B6FF00;
       animation: b-ltr-after 0.7s cubic-bezier(.77, 0, .18, 1) forwards;
@@ -80,7 +90,6 @@
     }
 
     footer {
-      position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
@@ -88,7 +97,7 @@
       margin: 0.5rem auto;
     }
   </style>
-<!--
+  <!--
   <style media="screen">
     body {
       background-color: #313234;
@@ -171,39 +180,40 @@
       margin: 0.5rem auto;
     }
   </style>-->
+  <div id="allExceptTheFooter">
+    <h1 id="pagetitle">COVID-19</h1>
 
-  <h1 id="pagetitle">COVID-19</h1>
+    <h2>Since you opened this website...</h2>
+    <div class="counterCont">
+      <span>
+        <p id="inf">0 </p>
+        <p>people got infected</p><br>
+      </span>
+      <span>
+        <p id="reco">0 </p>
+        <p>people recovered</p><br>
+      </span>
+      <span>
+        <p id="dead">0 </p>
+        <p>people died</p><br>
+      </span>
+    </div>
 
-  <h2>Since you opened this website...</h2>
-  <div class="counterCont">
-    <span>
-      <p id="inf">0 </p>
-      <p>people got infected</p><br>
-    </span>
-    <span>
-      <p id="reco">0 </p>
-      <p>people recovered</p><br>
-    </span>
-    <span>
-      <p id="dead">0 </p>
-      <p>people died</p><br>
-    </span>
-  </div>
-
-  <h2>Since your first visit...</h2>
-  <div class="counterCont">
-    <span>
-      <p id="linf">0 </p>
-      <p>people got infected</p><br>
-    </span>
-    <span>
-      <p id="lreco">0 </p>
-      <p>people recovered</p><br>
-    </span>
-    <span>
-      <p id="ldead">0 </p>
-      <p>people died</p><br>
-    </span>
+    <h2>Since your first visit...</h2>
+    <div class="counterCont">
+      <span>
+        <p id="linf">0 </p>
+        <p>people got infected</p><br>
+      </span>
+      <span>
+        <p id="lreco">0 </p>
+        <p>people recovered</p><br>
+      </span>
+      <span>
+        <p id="ldead">0 </p>
+        <p>people died</p><br>
+      </span>
+    </div>
   </div>
   <footer>
     <a href="countries.html" style="">view by countries</a>
