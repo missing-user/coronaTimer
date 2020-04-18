@@ -1,0 +1,85 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #228dff;
+  text-align: center;
+  font-family: "Roboto Slab", serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+p {
+  font-family: "Inconsolata", monospace;
+  font-size: 3.2rem;
+  display: inline;
+}
+
+h1 {
+  font-size: 10rem;
+  color: #ff0092;
+}
+
+h2 {
+  font-size: 4rem;
+  color: #ffca1b;
+}
+
+span {
+  /*should work just as well???*/
+  font-size: 2.5rem;
+  line-height: 4rem;
+  color: transparent;
+  color: #ba01ff;
+  background-image: linear-gradient(to left, #b6ff00 50%, #ba01ff 50%);
+  background-size: 200% 100%;
+  animation: a-ltr-after 1s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  -webkit-background-clip: border-box;
+  transition: color 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+  background-clip: border-box;
+}
+
+/* i know that using ids is frowned uppon,
+but they're faster in performance and this class is never being reused*/
+#allExceptTheFooter {
+  flex: 1 0 auto;
+}
+
+.even {
+  color: #b6ff00;
+  animation: b-ltr-after 0.7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  background-image: linear-gradient(to right, #b6ff00 50%, #ba01ff 50%);
+}
+
+@keyframes a-ltr-after {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes b-ltr-after {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+footer {
+  flex-shrink: 0;
+  font-size: 2rem;
+  margin: 0.5rem auto;
+}
+
+a:link {
+  color: #ba01ff;
+}
