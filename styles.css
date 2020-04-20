@@ -30,8 +30,7 @@ h2 {
 
 span {
   /*should work just as well???*/
-  font-size: 2.5rem;
-  line-height: 4rem;
+  font-size: 2.3rem;
   color: transparent;
   color: #ba01ff;
   background-image: linear-gradient(to left, #b6ff00 50%, #ba01ff 50%);
