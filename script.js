@@ -1,15 +1,25 @@
 var urlParams = new URLSearchParams(location.search);
 if (urlParams.has("country")) {
 	fetch(
-		["https://corona.lmao.ninja/v2/historical/", urlParams.get("country")].join("")).then(response => {
-		return response.json();
-	}).then(onLoaded);
-	document.getElementById("pagetitle").innerHTML += ["<br> in",
+		[
+			"https://corona.lmao.ninja/v2/historical/?lastdays=120",
+			urlParams.get("country")
+		].join("")
+	)
+		.then(response => {
+			return response.json();
+		})
+		.then(onLoaded);
+	document.getElementById("pagetitle").innerHTML += [
+		"<br> in",
 		urlParams.get("country")
 	].join(" ");
-} else fetch("https://corona.lmao.ninja/v2/historical/all").then(response => {
-	return response.json();
-}).then(onLoaded);
+} else
+	fetch("https://corona.lmao.ninja/v2/historical/all")
+		.then(response => {
+			return response.json();
+		})
+		.then(onLoaded);
 
 function perDay(inputArray) {
 	k = Object.keys(inputArray);
@@ -56,6 +66,14 @@ function loadLastSession(data) {
 		c += Math.floor(timeDiff / calcInterval(perDay(data.cases)));
 		d += Math.floor(timeDiff / calcInterval(perDay(data.deaths)));
 		r += Math.floor(timeDiff / calcInterval(perDay(data.recovered)));
+
+		if (!c) {
+			localStorage.clear();
+			console.log("clearing session data, NaN found");
+			c = 0;
+			d = 0;
+			r = 0;
+		}
 		console.log("loaded last session data ", dateKey, oldTime);
 		document.getElementById("linf").textContent = c + " ";
 		document.getElementById("ldead").textContent = d + " ";
@@ -79,7 +97,9 @@ function onLoaded(data) {
 		}, calcInterval(perDay(data.cases)));
 		setInterval(updateValue, calcInterval(perDay(data.cases)), "inf");
 	}
-	if (perDay(data.deaths) > 0) setInterval(updateValue, calcInterval(perDay(data.deaths)), "dead");
-	if (perDay(data.recovered) > 0) setInterval(updateValue, calcInterval(perDay(data.recovered)), "reco");
+	if (perDay(data.deaths) > 0)
+		setInterval(updateValue, calcInterval(perDay(data.deaths)), "dead");
+	if (perDay(data.recovered) > 0)
+		setInterval(updateValue, calcInterval(perDay(data.recovered)), "reco");
 	if (window.localStorage) loadLastSession(data);
 }
