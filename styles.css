@@ -35,8 +35,8 @@ span {
   color: #ba01ff;
   background-image: linear-gradient(to left, #b6ff00 50%, #ba01ff 50%);
   background-size: 200% 100%;
-  -webkit-animation: a-ltr-after 1s cubic-bezier(0.77, 0, 0.18, 1) forwards;
-  animation: a-ltr-after 1s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  -webkit-animation: a-ltr-after .25s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  animation: a-ltr-after .25s cubic-bezier(0.77, 0, 0.18, 1) forwards;
   transition: color .5s cubic-bezier(0.77, 0, 0.18, 1);
   background-clip: border-box;
 }
@@ -49,8 +49,8 @@ but they're faster in performance and this class is never being reused*/
 
 .even {
   color: #b6ff00;
-  -webkit-animation: b-ltr-after .7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
-  animation: b-ltr-after .7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  -webkit-animation: b-ltr-after .25s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  animation: b-ltr-after .25s cubic-bezier(0.77, 0, 0.18, 1) forwards;
   background-image: linear-gradient(to right, #b6ff00 50%, #ba01ff 50%);
 }
 
