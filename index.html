@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Corona visualizer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=fallback" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=fallback" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"></link>
-  </head>
 
-  <body>
-    <div id="allExceptTheFooter">
-      <h1 id="pagetitle">COVID-19</h1>
+<head>
+  <meta charset="utf-8">
+  <title>Corona visualizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=fallback" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  </link>
+</head>
 
-      <h2>Since you opened this website...</h2>
-      <div class="counterCont">
-        <span>
-          <p id="inf">0
-          </p>
-          <p>people got infected</p><br>
-        </span>
-        <span>
-          <p id="reco">0
-          </p>
-          <p>people recovered</p><br>
-        </span>
-        <span>
-          <p id="dead">0
-          </p>
-          <p>people died</p><br>
-        </span>
-      </div>
+<body>
+  <div id="allExceptTheFooter">
+    <h1 id="pagetitle">COVID-19</h1>
 
-      <h2>Since your first visit...</h2>
-      <div class="counterCont" style="margin-bottom:2.5rem">
-        <span>
-          <p id="linf">0
-          </p>
-          <p>people got infected</p><br>
-        </span>
-        <span>
-          <p id="lreco">0
-          </p>
-          <p>people recovered</p><br>
-        </span>
-        <span>
-          <p id="ldead">0
-          </p>
-          <p>people died</p><br>
-        </span>
-      </div>
+    <h2>Since you opened this website...</h2>
+    <div class="counterCont">
+      <span>
+        <p id="inf">0
+        </p>
+        <p>people got infected</p><br>
+      </span>
+      <span>
+        <p id="reco">0
+        </p>
+        <p>people recovered</p><br>
+      </span>
+      <span>
+        <p id="dead">0
+        </p>
+        <p>people died</p><br>
+      </span>
     </div>
-    <footer>
-      <a href="countries.html" style="">VIEW BY COUNTRIES</a>
-    </footer>
-    <script type="text/javascript" src="script.js"></script>
-  </body>
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9f51233f11041a194c4d5f4511d8282"}'></script>
+
+    <h2>Since your first visit...</h2>
+    <div class="counterCont" style="margin-bottom:2.5rem">
+      <span>
+        <p id="linf">0
+        </p>
+        <p>people got infected</p><br>
+      </span>
+      <span>
+        <p id="lreco">0
+        </p>
+        <p>people recovered</p><br>
+      </span>
+      <span>
+        <p id="ldead">0
+        </p>
+        <p>people died</p><br>
+      </span>
+    </div>
+  </div>
+  <footer>
+    <a href="countries.html" style="">VIEW BY COUNTRIES</a>
+  </footer>
+  <script type="text/javascript" src="script.js"></script>
+</body>
+<script>var cfla = document.createElement('script'); cfla.defer = true; cfla.src = 'https://static.cloudflareinsights.com/beacon.min.js'; cfla.setAttribute("data-cf-beacon", '{"token": "f9f51233f11041a194c4d5f4511d8282"}'); if (!window.localStorage || !window.localStorage.getItem("devmode")) document.body.appendChild(cfla)</script>
+
 </html>

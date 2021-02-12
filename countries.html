@@ -1,131 +1,142 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Corona case viz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=fallback" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=fallback" rel="stylesheet">
-  </head>
 
-  <body>
-    <style media="screen">
-      body {
-        background-color: #228DFF;
-        text-align: center;
-        font-family: 'Roboto Slab', serif;
-      }
-      a,
-      p {
-        font-family: 'Inconsolata', monospace;
-        font-size: 2.5rem;
-        display: inline-block;
-        background-size: 200% 100%;
-        background-image: linear-gradient(to left, #B6FF00 50%, transparent 50%);
-        background-position: 0 0;
-        transition: background-position 0.5s cubic-bezier(.77, 0, .18, 1);
-      }
-      h1 {
-        font-size: 10rem;
-        color: #FF0092;
-      }
-      li {
-        line-height: 2.5rem;
-      }
-      li::before {
-        content: "";
-        background-color: #B6FF00;
-        width: 1rem;
-        height: 1rem;
-        display: inline-block;
-        line-height: 1rem;
-        text-align: center;
-        margin-right: 0.5rem;
-      }
-      a:hover {
-        background-position: -100% 0;
-      }
-      h2 {
-        font-size: 4rem;
-        color: #FFCA1B;
-      }
-      ::placeholder {
-        transition: color 0.5s cubic-bezier(.77, 0, .18, 1);
-        color: #B6FF00;
-      }
-      input:focus::placeholder {
-        color: #BA01FF;
-      }
-      #searchbar {
-        background-size: 200% 100%;
-        transition: 0.5s cubic-bezier(.77, 0, .18, 1);
-        transition-property: background-position, color;
-        background-image: linear-gradient(to left, #B6FF00 50%, #BA01FF 50%);
-        color: #B6FF00;
-        font-family: 'Inconsolata', monospace;
-        /*background-image: url('searchicon.png');
+<head>
+  <meta charset="utf-8">
+  <title>Corona case viz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=fallback" rel="stylesheet">
+</head>
+
+<body>
+  <style media="screen">
+    body {
+      background-color: #228DFF;
+      text-align: center;
+      font-family: 'Roboto Slab', serif;
+    }
+
+    a,
+    p {
+      font-family: 'Inconsolata', monospace;
+      font-size: 2.5rem;
+      display: inline-block;
+      background-size: 200% 100%;
+      background-image: linear-gradient(to left, #B6FF00 50%, transparent 50%);
+      background-position: 0 0;
+      transition: background-position 0.5s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    h1 {
+      font-size: 10rem;
+      color: #FF0092;
+    }
+
+    li {
+      line-height: 2.5rem;
+    }
+
+    li::before {
+      content: "";
+      background-color: #B6FF00;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      line-height: 1rem;
+      text-align: center;
+      margin-right: 0.5rem;
+    }
+
+    a:hover {
+      background-position: -100% 0;
+    }
+
+    h2 {
+      font-size: 4rem;
+      color: #FFCA1B;
+    }
+
+    ::placeholder {
+      transition: color 0.5s cubic-bezier(.77, 0, .18, 1);
+      color: #B6FF00;
+    }
+
+    input:focus::placeholder {
+      color: #BA01FF;
+    }
+
+    #searchbar {
+      background-size: 200% 100%;
+      transition: 0.5s cubic-bezier(.77, 0, .18, 1);
+      transition-property: background-position, color;
+      background-image: linear-gradient(to left, #B6FF00 50%, #BA01FF 50%);
+      color: #B6FF00;
+      font-family: 'Inconsolata', monospace;
+      /*background-image: url('searchicon.png');
       background-position: 2rem 2rem;
       background-repeat: no-repeat;*/
-        width: 50%;
-        font-size: 3.2rem;
-        padding: 1rem 3rem 1rem 5rem;
-        border: none;
-        margin-bottom: 2rem;
-      }
-      #searchbar:focus {
-        background-position: 100% 0;
-        color: #BA01FF;
-      }
-    </style>
-    <h1>All countries</h1>
-    <input type="text" id="searchbar" onkeyup="updateList(this)" placeholder="Search for country">
-    <br>
-    <ul id="countryList" style="list-style:none; text-align: left; display: inline-block;">
-      <li id="world">
-        <a href="./">WORLD</a>
-      </li>
-    </ul>
-    <script type="text/javascript">
-      fetch("https://corona.lmao.ninja/v2/countries").then((response) => {
-        return response.json()
-      }).then(onLoaded);
+      width: 50%;
+      font-size: 3.2rem;
+      padding: 1rem 3rem 1rem 5rem;
+      border: none;
+      margin-bottom: 2rem;
+    }
 
-      var listOfCountries = []
+    #searchbar:focus {
+      background-position: 100% 0;
+      color: #BA01FF;
+    }
+  </style>
+  <h1>All countries</h1>
+  <input type="text" id="searchbar" onkeyup="updateList(this)" placeholder="Search for country">
+  <br>
+  <ul id="countryList" style="list-style:none; text-align: left; display: inline-block;">
+    <li id="world">
+      <a href="./">WORLD</a>
+    </li>
+  </ul>
+  <script type="text/javascript">
+    fetch("https://corona.lmao.ninja/v2/countries").then((response) => {
+      return response.json()
+    }).then(onLoaded);
 
-      function onLoaded(data) {
-        console.log('all countries have been loaded, creating list')
-        var c = document.createDocumentFragment();
+    var listOfCountries = []
 
-        data.forEach(function (item, index) {
-          var e = document.createElement("li");
-          var a = document.createElement("a");
-          a.textContent = item.country
-          a.href = ["./?country=", item.country].join("")
-          e.appendChild(a);
-          c.appendChild(e);
-          listOfCountries[index] = {
-            string: item.country.toUpperCase(),
-            listElement: e
-          }
-          listOfCountries.push({string: "WORLD", listElement: document.getElementById("world")})
-        })
-        document.getElementById("countryList").appendChild(c);
-      }
+    function onLoaded(data) {
+      console.log('all countries have been loaded, creating list')
+      var c = document.createDocumentFragment();
 
-      function updateList(input) {
-        var filter;
-        filter = input.value.toUpperCase();
-
-        // Loop through all list items, and hide those who don't match the search query
-        for (var item of listOfCountries) {
-          item.string
-          if (item.string.indexOf(filter) > -1) 
-            item.listElement.style.display = ""
-          else 
-            item.listElement.style.display = "none"
+      data.forEach(function (item, index) {
+        var e = document.createElement("li");
+        var a = document.createElement("a");
+        a.textContent = item.country
+        a.href = ["./?country=", item.country].join("")
+        e.appendChild(a);
+        c.appendChild(e);
+        listOfCountries[index] = {
+          string: item.country.toUpperCase(),
+          listElement: e
         }
+        listOfCountries.push({ string: "WORLD", listElement: document.getElementById("world") })
+      })
+      document.getElementById("countryList").appendChild(c);
+    }
+
+    function updateList(input) {
+      var filter;
+      filter = input.value.toUpperCase();
+
+      // Loop through all list items, and hide those who don't match the search query
+      for (var item of listOfCountries) {
+        item.string
+        if (item.string.indexOf(filter) > -1)
+          item.listElement.style.display = ""
+        else
+          item.listElement.style.display = "none"
       }
-    </script>
-  </body>
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
-    data-cf-beacon='{"token": "f9f51233f11041a194c4d5f4511d8282"}'></script>
+    }
+  </script>
+</body>
+<script>var cfla = document.createElement('script'); cfla.defer = true; cfla.src = 'https://static.cloudflareinsights.com/beacon.min.js'; cfla.setAttribute("data-cf-beacon", '{"token": "f9f51233f11041a194c4d5f4511d8282"}'); if (!window.localStorage || !window.localStorage.getItem("devmode")) document.body.appendChild(cfla)</script>
+
 </html>
