@@ -85,15 +85,20 @@ function loadLastSession(data) {
 
 function onLoaded(data) {
 	console.log(data);
-	if ("country" in data) {
+	countryString = urlParams.get("country")
+	if (countryString) {
 		//accomodate for different data structure in countries
-		data = data.timeline;
+		for (countryData of data) {
+			if (countryData.country == countryString)
+				data = countryData.timeline;
+		}
 	}
 	//set the intervals for the three different data types
 	if (perDay(data.cases) > 0) {
-		window.document.title = 0;
+		titleCount = 0;
 		setInterval(() => {
-			window.document.title++;
+			titleCount++
+			window.document.title = `Infections: ${titleCount}`;
 		}, calcInterval(perDay(data.cases)));
 		setInterval(updateValue, calcInterval(perDay(data.cases)), "inf");
 	}
