@@ -84,7 +84,9 @@ function loadLastSession(data) {
 }
 
 function onLoaded(data) {
-	console.log(data);
+		document.getElementById("inf").textContent = 0;
+		document.getElementById("dead").textContent = 0;
+		document.getElementById("reco").textContent = 0;
 	countryString = urlParams.get("country")
 	if (countryString) {
 		//accomodate for different data structure in countries
